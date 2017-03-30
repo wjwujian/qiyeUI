@@ -1,0 +1,186 @@
+/*会议详情*/
+.avator_title .red_btn {background-color: #007cc2}
+body .btn {background-color: #83c326}
+body .comment_btn {color: #fff}
+.meeting_details_bg {background: url(../images/icon/contact_bg.png) no-repeat bottom;
+	background-size: 100%
+}
+
+/*组织联系人*/
+body .user_select_icon.active i {color: #0093dd}
+body .ask_btn {color: #fff}
+
+
+
+/*任务节点*/
+.pb30{padding-bottom:30px;}
+.bordera15{border-radius:15px;}
+.addPiont{}
+.add_icon{background:url(../images/icon/add.png);width:35px;height:35px;}
+.honor_history {
+    position: relative;
+}
+.honor_history>li {
+}
+.clearfix:before, ul.inline-float:before, .clearfix:after, ul.inline-float:after {
+    content: "";
+    display: table;
+    font: 0/0 a;
+}
+.honor_left {
+    position: relative;
+    width: 70px;
+    text-align: center;
+}
+.fl {
+    float: left;
+    display: inline;
+}
+.ib {
+    display: inline-block;
+    vertical-align: middle;
+}
+.pr20 {
+    padding-right: 20px;
+}
+.honor_history .circle_ico {
+    position: absolute;
+    left: 14px;
+    top: 25px;
+    z-index: 2;
+    color:#fff;
+    background-color: #ccc;
+    width: 18px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 100%;
+    background-clip: padding-box;
+}
+.honor_right {
+    position: relative;
+    margin-left:28px;
+    padding: 10px 10px 10px 25px;
+    background-color: #fff;
+    /*border-radius: 5px;*/
+    border-bottom: 1px solid #ccc;
+    background-clip: padding-box;
+}
+.f15 {
+    font-size: 15px;
+}
+.cfff{color:#fff;}
+
+.pb5 {
+    padding-bottom: 5px;
+}
+.honor_history:after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+}
+.honor_right input{border-radius: 4px;border:1px solid #ededed;width:90%;}
+.honor_right textarea{border-radius: 4px;border:1px solid #ededed;width:100%;box-sizing:border-box;}
+.honor_right div{height:35px;line-height:35px;}
+.delete_icon{background:url(../images/icon/delete.png);background-size:100%;width:25px;height:25px;position:absolute;top:20px;right:10px;}
+.h30{height:30px;}
+.lh30{line-height: 30px;}
+.h70{height:70px;}
+.w85p{width:85%;}
+.pb20{padding-bottom:20px;}
+.addPiont{padding:30px;background:#fff;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin-top:-1px;}
+
+
+/* 按钮 */
+   body .btn {
+       background: #1679ca;
+   }
+/* 上传*/
+   body .file_top_btn {
+       background: white;
+       color: #1679ca;
+   } 
+
+
+   body .get_plus_btn {
+       text-decoration: none;
+       background-color: #fff;
+       border: solid 1px #1679ca;
+       color: #1679ca;
+       font-size: 18px;
+       width: 35px;
+       text-align: center;
+       height: 35px;
+       border-radius: 35px;
+       display: block;
+   }
+
+
+
+
+/*复选*/
+.biz_checkbox:checked+i {
+    background: url(../images/icon/checked.png) no-repeat center #7fc02f;
+    background-size: 70%;
+    border:1px solid #7fc02f;
+}
+.biz_checkbox+i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border:1px solid #9a9a9a;
+    background-clip: padding-box;
+    background: url(../images/icon/no_checked.png) no-repeat center;
+    background-size: 90%;
+}
+input {
+    vertical-align: middle;
+    font: inherit;
+}
+
+/*单选*/
+.biz_radio:checked+i {
+    background: url(../images/icon/piont1.png) no-repeat center;
+    background-size: 90%;
+    border:1px solid #7fc02f;
+}
+.biz_radio+i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border:1px solid #9a9a9a;
+    background-clip: padding-box;
+    background: url(../images/icon/piont.png) no-repeat center;
+    background-size: 90%;
+}
+
+.honor_history .fixe_checked{
+    position: absolute;
+    left: 14px;
+    top: 25px;
+    z-index: 999;
+    color: #fff;
+    background:url(../images/icon/checked.png) no-repeat center #7fc02f;
+    background-size:80%;
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    background-clip: padding-box;
+}
+.cgreen{color:#83c245;}
+
+/* 信箱列表的背景图 */
+.bg_pic{background:url(../images/bg_top.jpg) no-repeat center;}
+.radius{
+    border-radius: 6px 0 6px 0;
+    background-clip: padding-box;
+}
+.bg_body{background:url(../images/icon/bg_body.png) no-repeat center;background-size:100%;background-color:transparent;}
+

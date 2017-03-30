@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <ul class="ui_list_in">
+                <li>
+                    <label class="ui_slider_check">
+                        <input type="checkbox" hidden checked>
+                        <span>
+                            <i></i>
+                            <b class="slider_yes">是</b>
+                            <b class="slider_no">否</b>
+                        </span>
+                    </label>
+                </li>
+                <li>
+                    <label class="ui_radio">
+                      <input type="radio" hidden  value="yes" checked name="radio">
+                      <i></i>
+                      <b>yes</b>
+                    </label> 
+                    <label class="ui_radio">
+                      <input type="radio" hidden value="no" name="radio">
+                      <i></i>
+                      <b>no</b>
+                    </label> 
+                </li>
+                <li>
+                    <label class="ui_checkbox">
+                      <input type="checkbox" hidden checked value="yes" name="checkbox">
+                      <i></i>
+                      <b>确认</b>
+                    </label> 
+                </li>
+                <li class="flexbox">
+                    <label class="flexCenter c666">星星评分</label> 
+                    <div class="flexItem">
+                        <ul class="ui_star_review clearfix" id="star1">
+                            <li title="差"><input value="1" type="radio" name="review" hidden="hidden"></li>
+                            <li title="较差"><input value="2" type="radio" name="review" hidden="hidden"></li>
+                            <li title="一般"><input value="3" type="radio" name="review" hidden="hidden"></li>
+                            <li title="好"><input value="4" type="radio" name="review" hidden="hidden"></li>
+                            <li title="很好"><input value="5" type="radio" name="review" hidden="hidden"></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--企微的js-->
+<script type="text/javascript" src="js/common.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<script type="text/javascript">
+    //星星评分
+    $.fn.starReview = function(options,callback){
+      var defaults = {
+        el:'el',
+        active:'on',
+      };
+      var settings = $.extend(defaults,options),
+          el = settings.el;
+      this.on('click',function(){
+        $(el).removeClass(settings.active);
+            var $this = $(this);
+                $this.addClass(settings.active);
+                $this.prevAll().addClass(settings.active);
+            var $V = $this.find('input[type="radio"]').val();
+            if(callback && typeof(callback)){
+                callback($V)
+            }
+      })
+    }
+
+    var star1 = $('#star1>li').starReview({
+        el:'#star1>li',
+    },function($V){
+        console.log('你选择了'+$V+'颗星');
+    });
+</script>
+</body>
+</html>

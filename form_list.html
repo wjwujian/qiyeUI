@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <header class="abs_top">
+            <ul class="ui_tab flexbox" id="tab_tt">
+                <li class="flexItem on"><a href="javascript:;">表单1</a></li>
+                <li class="flexItem"><a href="javascript:;">表单2</a></li>
+                <li class="flexItem"><a href="javascript:;">表单3</a></li>
+            </ul>
+        </header>
+        <div id="main" class="wrap_inner">
+            <div style="height:50px"></div>
+            <section class="js-floor">
+                <div class="letter_bar flexbox js-title">
+                    <h2 class="flexItem">表单1</h2>
+                    <div class="flexCenter"><i class="down_arrow_ico"></i></div>
+                </div>
+                <div class="js-content">
+                   <ul class="ui_list" id="ui_list">
+                        
+                   </ul>
+                </div>
+            </section>
+            <section class="js-floor">
+                <div class="letter_bar flexbox js-title">
+                    <h2 class="flexItem">表单2</h2>
+                    <div class="flexCenter"><i class="down_arrow_ico"></i></div>
+                </div>
+                <div class="js-content">
+                   <ul class="ui_list" id="ui_list2">
+                        
+                   </ul>
+                </div>
+            </section>
+            <section class="js-floor">
+                <div class="letter_bar flexbox js-title">
+                    <h2 class="flexItem">表单3</h2>
+                    <div class="flexCenter"><i class="down_arrow_ico"></i></div>
+                </div>
+                <div class="js-content">
+                   <ul class="ui_list">
+                        <li class="flexbox">
+                            <label class="c666"><em class="c_red">*</em>合同编号</label>
+                            <div class="flexItem tr pl10">
+                                <input type="text" class="w100p tr" placeholder="请输入">
+                            </div>
+                        </li>
+                        <li class="flexbox">
+                            <label class="c666"><em class="c_red">*</em>客户类型</label>
+                            <div class="flexItem tr pl10">
+                                <select class="select rtl c999">
+                                    <option value="请选择">请选择</option>
+                                    <option value="国企">国企</option>
+                                    <option value="外资">外资</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="flexbox">
+                            <label class="c666"><em class="c_red">*</em>客户名称</label>
+                            <div class="flexItem tr pl10">
+                                <input type="text" class="w100p tr" placeholder="请输入">
+                            </div>
+                        </li>
+                        <li class="flexbox">
+                            <label class="c666"><em class="c_red">*</em>货币种类</label>
+                            <div class="flexItem tr pl10">
+                                <select class="select rtl c999">
+                                    <option value="请选择">请选择</option>
+                                    <option value="人民币">人民币</option>
+                                    <option value="美元">美元</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="flexbox">
+                            <label class="c666">其他</label>
+                            <div class="flexItem tr pl10">
+                                <textarea class="textarea tr" rows="1" placeholder="请输入" id="textfield"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--mock模拟数据-->
+<script src="js/mock.js"></script>
+<script src="js/my.js"></script>
+<script type="text/javascript">
+    // 使用 Mock生成随机数据
+    var data = Mock.mock('/path/to/file',{
+        'result|10':[{
+            'title' : "@ctitle(3, 5)",
+            'content':'@cword(5, 7)',
+        }]
+    });
+
+    function loadData(el){
+        $('.lastComment').text('正在加载...');
+        $.ajax({
+            url: '/path/to/file',
+            type: 'GET',
+            dataType: 'json',
+        })
+        .done(function(data) {
+            var str = '',
+                len = data.result.length;
+            for (var i = 0; i < len; i++) {
+                str += '<li class="flexbox">'
+                str +=      '<label class="flexCenter c666">字段'+(i+1)+'</label> '
+                str +=      '<div class="flexItem tr pl10">'+data.result[i].content+'</div>'
+                str +=  '</li>';
+            };
+            $(el).append(str);
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    }
+    loadData('#ui_list');
+    loadData('#ui_list2');
+
+    //收缩
+    var $jsT = $('.js-title');
+    $jsT.on('click',function(){
+        var $this  = $(this);
+        $this.find('.down_arrow_ico').toggleClass('rotate180');
+        $this.next('.js-content').toggle();
+        $this.parent().siblings().find('.down_arrow_ico').removeClass('rotate180');
+        $this.parent().siblings().find('.js-content').hide(); 
+    })
+
+    //楼层效果
+    // $(window).scroll(function(){
+    //     console.log(_this.scrollTop);
+    //     statesTab('.fix_tab li','.title');
+    // })
+    document.querySelector('#main').onscroll = function(){
+        console.log(this.scrollTop);
+        statesTab(this,'#tab_tt li','.js-floor');
+    }
+
+    function statesTab(_this,tab,title){
+            var li = document.querySelectorAll(tab);
+            var title = document.querySelectorAll(title);
+        for (var i = 0; i < title.length; i++) {
+            li[i].classList.remove('on');
+            //滚动小于第一个offsetTop的时候
+            if(_this.scrollTop <= title[0].offsetTop){  
+                li[0].classList.add('on');
+            //滚动大于最后一个offsetTop的时候
+            }else if(_this.scrollTop >= title[title.length - 1].offsetTop){ 
+                li[title.length - 1].classList.add('on');
+            //滚动范围在相邻的offsetTop区间内
+            }else if(_this.scrollTop > title[i].offsetTop && _this.scrollTop < title[i+1].offsetTop) {
+               li[i].classList.add('on'); 
+            }
+        }; 
+    }
+</script>
+</body>
+</html>

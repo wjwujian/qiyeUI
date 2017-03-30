@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <section>
+                <h2 class="letter_bar">普通列表</h2>
+                <ul class="ui_list" id="normal_list">
+                    <li v-for="v in k">
+                        {{v.title}}
+                    </li>
+                </ul>
+            </section>
+            
+            <br>
+            <section>
+                <h2 class="letter_bar">列表缩进</h2>
+                <ul class="ui_list_in">
+                    <li>列表缩进</li>
+                    <li>列表缩进</li>
+                </ul>
+            </section>
+            
+            <br>
+            <section>
+                <h2 class="letter_bar">卡片列表</h2>
+                <ul class="ui_card_list" id="card_list">
+                    <li v-for="v in k">
+                        <a href="#">
+                            <div class="clearfix">
+                                <span class="fr ui_mark">邀请中</span>
+                                <h2 class="ellipsis f15">{{v.content}}</h2>
+                            </div>
+                            <p class="c999 f12"><label>到访时间：</label><time>{{v.datetime}}</time></p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <br>
+            <section>
+                <h2 class="letter_bar">带图片的列表</h2>
+                <ul class="ui_card_list" id="photo_list">
+                    <li v-for="v in k">
+                        <a href="{{v.url}}" class="flexbox">
+                            <figure><img v-bind:src="v.image" class="w80X60"></figure>
+                            <section class="flexItem pl10">
+                                <h2 class="ellipsis_line2">{{v.content}}</h2>
+                                <div class="pt5">
+                                    <time class="f12" style="color:#a7bac8">{{v.datetime}}</time>
+                                </div>
+                            </section>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+           <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--企微的js-->
+<script type="text/javascript" src="js/common.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<!--mock模拟数据-->
+<script src="js/mock.js"></script> 
+<!--vuejs-->
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript">
+        //普通列表
+        new Vue({
+            el:'#normal_list',
+            data:Mock.mock({
+            'k|2-4':[{
+                'title' : "@ctitle(5,8)"
+                }]
+            })
+        })
+
+        //卡片列表
+        new Vue({
+            el:'#card_list',
+            data:Mock.mock({
+            'k|5':[{
+                'name':"@name(true)",  
+                'datetime':"@datetime('yyyy-MM-dd HH:mm')", 
+                'title' : "@ctitle(3, 5)",
+                'content':'@cword(5, 70)'
+                }]
+            })
+        })
+
+        //图片列表
+        new Vue({
+            el:'#photo_list',
+            data:Mock.mock({
+            'k|10':[{
+                'name':"@name(true)",  
+                'datetime':"@datetime('yyyy/MM/dd')", 
+                'title' : "@ctitle(3, 5)",
+                'content':'@cword(5, 70)',
+                'image':"@image('80X60')",
+                'url':"@url"
+                }]
+            })
+        })
+
+</script>
+</body>
+</html>

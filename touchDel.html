@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <ul class="ui_card_list" id="ui_card_list">
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">邀请中</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">待确认</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">邀请中</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">待确认</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">邀请中</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="clearfix">
+                            <span class="fr ui_mark">待确认</span>
+                            <h2 class="ellipsis f15">向左滑动卡片列表</h2>
+                        </div>
+                        <p class="c999 f12"><label>到访时间：</label><time>2016-05-10 15:30</time></p>
+                    </a>
+                    <div class="ui_touch_item">
+                        <button type="button" class="ui_del_btn">删除</button>
+                    </div>
+                </li>
+            </ul>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<!--企微的js-->
+<script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript">
+    var slide =  new Slider('#ui_card_list li','.ui_touch_item');
+    $('#ui_card_list li').on('click','.ui_touch_item',function(){
+        var $btn = $(this);
+        _alert('','确认删除？',{
+                ok:function(){
+                    $btn.parent('li').fadeOut(function(){
+                        $btn.parent('li').remove()
+                    })
+                },
+                fail:function(){
+                  slide.update()  
+                }
+            }
+        )
+    })
+</script>
+</body>
+</html>

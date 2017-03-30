@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <ul class="ui_tab flexbox" id="tab_tt">
+                <li class="flexItem on"><a href="javascript:;">tab1</a></li>
+                <li class="flexItem"><a href="javascript:;">tab2</a></li>
+                <li class="flexItem"><a href="javascript:;">tab3</a></li>
+            </ul>
+            <div class="swiper-scrollbar"></div>
+
+            <div class="swiper-container mt5">
+                <div class="swiper-wrapper boxModal">
+                    <!--tab1-->
+                    <div class="swiper-slide" id="swiper-slide0">
+                        <ul class="ui_list">
+                            
+                        </ul>
+                    </div>
+                    <!--tab2-->
+                    <div class="swiper-slide" id="swiper-slide1">                        
+                        <ul class="ui_list">
+                        </ul>
+                    </div>
+                    <!--tab3-->
+                    <div class="swiper-slide" id="swiper-slide2">
+                        <ul class="ui_list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="nav_tab_wrap">
+                <nav class="ui_nav_tab flexbox">
+                    <a href="javascript:;" class="flexItem on">tab1</a>
+                    <a href="javascript:;" class="flexItem">tab2</a>
+                    <a href="javascript:;" class="flexItem">tab3</a>
+                </nav>
+            </div>
+            <div id="tab_content">
+                <ul class="ui_list">
+                    <li>
+                        <a href="#">
+                            tab1
+                        </a>
+                    </li>
+                </ul>
+                <ul class="ui_list" style="display: none">
+                    <li>
+                        <a href="#">
+                            tab2
+                        </a>
+                    </li>
+                </ul>
+                <ul class="ui_list" style="display: none">
+                    <li>
+                        <a href="#">
+                            tab3
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            tab3
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--tab切换依赖-->
+<script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<!--mock模拟数据-->
+<script src="js/mock.js"></script> 
+<!--loading-->
+<script src="js/loading.js"></script> 
+<script type="text/javascript">
+    // 使用 Mock生成随机数据
+    var data = Mock.mock('/path/to/file',{
+        'list|100':[{
+            'name':"@name(true)",  
+            'datetime':"@datetime('yyyy-MM-dd HH:mm')", 
+            'title' : "@ctitle(3, 5)",
+            'content':'@cword(5, 70)'
+        }]
+    })
+    window.Random = Mock.Random;
+
+    //tab数据
+    function loadTabContent(listID){
+        listID = listID || '#swiper-slide0 ul';
+        showLoading();
+        $.ajax({
+            url: '/path/to/file',
+            type: 'GET',
+            dataType: 'json'
+        })
+        .done(function(data) {
+            console.log("success");
+            var str = "",i;
+            for (i = 0; i < data.list.length; i++) {
+                str += '<li>'
+                 +       '<a href="#">'
+                 +           data.list[i].content
+                 +       '</a>'
+                 +   '</li>'
+            };
+            $(listID).append(str);
+            hideLoading();
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    }
+    //tab手势切换
+    var tabSwiper = new Swiper('.swiper-container',{
+        scrollbar: '.swiper-scrollbar',
+        scrollbarHide: false,
+        onInit:function(){
+           //限制最大高度
+            $('.swiper-wrapper>.swiper-slide').css({
+                'maxHeight':$(window).height() - $('.abs_top').height(),
+                'overflowY':'auto'
+            })
+            loadTabContent('#swiper-slide0 ul');    //加载第一个tab数据
+            $('#swiper-slide0 ul').attr('data-content','has-content');
+        },
+        onSlideChangeStart: function(tabSwiper){
+            var index = tabSwiper.activeIndex;
+            //通过给一个自定义属性data-content判断是否有滑过tab。加载tab之后已经有了内容，不需要再去请求数据
+            if($('#swiper-slide'+index+' ul').attr('data-content') != 'has-content'){ 
+                loadTabContent('#swiper-slide'+index+' ul');
+                $('#swiper-slide'+index+' ul').attr('data-content','has-content');
+            }
+            //添加tab状态
+            $('#tab_tt>li').eq(index).addClass('on').siblings().removeClass('on');
+        }
+    }); 
+
+    //点击滑动tab
+    $("#tab_tt>li").on('touchstart mousedown',function(){
+        var index = $(this).index();
+        $('#tab_tt>li').eq(index).addClass('on').siblings().removeClass('on');
+        tabSwiper._slideTo(index);
+    })
+
+    //点击tab切换
+    $('.ui_nav_tab').on('click','a',function(){
+       tabUI('on','#tab_content',this);
+    })
+
+</script>
+</body>
+</html>

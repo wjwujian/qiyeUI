@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <article class="pt15 pb15">
+        <h2 class="ui_h2 c_green tc">企业号UI组件库</h2><br>
+        <ul class="ui_list_in ui_list_arrow mb10" id="ui_list1">
+        </ul>
+        <ul class="ui_list_in ui_list_arrow" id="ui_list2">
+        </ul>
+        <i class="icon-exchange"></i>
+    </article>
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <!--企微的js-->
+    <script type="text/javascript" src="js/dialog.js"></script>
+    <script type="text/javascript" src="js/loading.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.ajax({
+                type:'GET',
+                url:'js/qui.json',
+                dataType:'json',
+                Async:true,
+                beforeSend:function(){
+                    showLoading();
+                },
+                success:function(json){
+                    var str = '',
+                        footerStr = '';
+                    $.each(json.menu,function(index,info){
+                        str += '<li><a href='+info["href"]+'><i class="'+info["icon"]+'"></i>'+info["text"]+'</a></li>';
+                    })
+                    $.each(json.menu2,function(index,info){
+                        footerStr += '<li><a href='+info["href"]+'><i class="'+info["icon"]+'"></i>'+info["text"]+'</a></li>';
+                    })
+                    $('#ui_list1').html(str);
+                    $('#ui_list2').html(footerStr);
+                    hideLoading();
+                }
+            })
+
+            if (typeof(localStorage) && localStorage.num) {
+                localStorage.num = Number(localStorage.num)+1;
+            }else{
+                localStorage.num = 0;
+                _alert('2016-12-23更新公告','1、增加了签名功能<br>2、滑动删除桌面端也能操作<br>3、宫格布局css优化<br>4、关于企业号UI组件页面增加大图预览');
+            };
+        })
+    </script>
+</body>
+</html>

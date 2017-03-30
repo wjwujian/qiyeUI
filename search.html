@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <section>
+                <div class="p10"><h3 class="ui_b_l_tt">搜索一</h3></div>
+                <div class="search-box">
+                    <div class="inner-search-box">
+                    <div class="search-box-o flexbox">
+                        <div class="flexItem">
+                            <div class="search-input-box flexbox">
+                                <div class="flexItem">
+                                    <div class="searchTitleIcon faSortDown">
+                                       <div class="searchTitleSpan">
+                                           <span></span>
+                                       </div>
+                                       <ul class="searchTitlePop" id="schValueId">
+                                            <li><a href="javascript:;">全部</a></li>
+                                            <li><a href="javascript:;">公司动态</a></li>
+                                        </ul>
+                                   </div>
+                                    <input class="search-input pl30" type="text" placeholder="搜索" name="keyWord" id="keyWord">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search_more"> 
+                            <a href="javascript:enterSearch()" class="search_letter_btn"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <br><br><br>
+
+            <section>
+                <div class="p10"><h3 class="ui_b_l_tt">搜索二</h3></div>
+                <div class="fixed" style="z-index:1000;">
+                    <form method="" action="">
+                        <div class="flexbox top_bar">
+                            <div class="flexItem ipt_item">
+                                <input type="text" class="ipt_search ipt_search_ico" placeholder="搜索">
+                            </div>
+                            <div class="ib" id="letter_search">
+                                <a href="javascript:;"><i class="down_menu_ico"></i></a>
+                                <div class="hide drop_selcet" id="drop">
+                                    <div class="p10 bgWhite">
+                                        <dl class="mb15">
+                                            <dt class="c666">竞赛时间</dt>
+                                            <dd class="pt5 flexbox">
+                                                 <input type="text" readonly placeholder="请选择" class="flexItem ui_ipt" id="taskStart">
+                                                 <span class="flexCenter pl5 pr5">-</span>
+                                                 <input type="text" readonly placeholder="请选择" class="flexItem ui_ipt" id="taskStop">
+                                            </dd>
+                                        </dl>
+                                        <dl class="mb10">
+                                            <dt class="c666">竞赛类型</dt>
+                                            <dd class="pt5">
+                                                <div class="flexbox">
+                                                    <select class="flexItem ui_ipt">
+                                                        <option value="全部">全部</option>
+                                                        <option value="业绩竞赛">业绩竞赛</option>
+                                                    </select>
+                                                    <div class="pl15"><button type="button" class=" medium_btn" id="submit">筛选</button></div>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <br><br><br>
+
+            <section>
+                <div class="p10"><h3 class="ui_b_l_tt">搜索三</h3></div>
+                <div class="search-box">
+                    <form method="" action="">
+                        <div class="flexbox top_bar">
+                            <div class="flexItem ipt_item clearfix">
+                                <a href="javascript:;" class="fr close_ico" style="display:none"></a>
+                                <div class="mr30"><input type="text" id="ipt_search" class="ipt_search ipt_search_ico" placeholder="搜索"></div>
+                            </div>
+                            <a href="javascript:;" class="search_cancel">取消</a>
+                            <label for="ipt_search" class="search_label">
+                                <i class="ipt_search_ico"></i><span class="c999">搜索</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+    <!--遮罩-->
+    <div id="mask" style="display:none"></div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--企微的js-->
+<script type="text/javascript" src="js/common.js"></script>
+<!--日历css和js-->
+<link rel="stylesheet" type="text/css" href="css/mobiscroll.2.13.2.min.css">
+<script type="text/javascript" src="js/mobiscroll.2.13.2.min.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<script type="text/javascript">
+    //下拉搜索
+    $('.searchTitleIcon').on('click',function(){
+        if($(this).hasClass('faSortDown')){
+            $(this).removeClass('faSortDown').addClass('faSortUp');
+        }else if($(this).hasClass('faSortUp')){
+            $(this).removeClass('faSortUp').addClass('faSortDown');
+        }
+    });
+
+    $("#titleSearch").focus(function(){
+        $('.searchTitleIcon').removeClass('faSortUp').addClass('faSortDown');
+    })
+
+    //点击搜索
+    function SearchControl(el,ipt,close_ico){
+        this.el = el;
+        this.ipt = ipt; 
+        this.close_ico = close_ico;
+        //显示搜索
+        this._showSearch = function(){
+            $(el).hide();
+        };
+        //显示删除按钮
+        this._showClose = function(){
+            if($(_this.ipt)[0].value.length){
+                $(_this.close_ico).show(); 
+            }else{
+                $(_this.close_ico).hide(); 
+            }
+        };
+        //清除输入值
+        this._clearValue = function(){
+            $(_this.ipt)[0].value = '';
+            $(_this.close_ico).hide();
+        };
+        _this = this;
+        $(_this.el).on('click',_this._showSearch);
+        $(_this.ipt).on('input',_this._showClose);
+        $(_this.close_ico).on('click',_this._clearValue);
+    }
+    new SearchControl('.search_label','#ipt_search','.ipt_item .close_ico');
+
+    var d = new Date();
+    //设置初始化
+    $("#taskStart").val(d.Format("yyyy-MM-dd ")+"09:00");
+    $("#taskStop").val(d.Format("yyyy-MM-dd ")+"18:00");
+
+    /**
+        ====日历设置====
+        var opt = {
+        preset: 'datetime', //日期
+        theme: 'android-holo light', //皮肤样式
+        display: 'bottom', //显示方式 
+        mode: 'scroller', //日期选择模式
+        dateFormat: 'yy-mm-dd', // 上面部分的日期格式
+        setText: '确定', //确认按钮名称
+        cancelText: '取消',//取消按钮
+        dateOrder: 'yymmdD', //面板中日期排列格式
+        showNow: true,  
+        nowText: "今天", 
+        group: true,
+        stepMinute: 5,//设置分钟间隔
+        dayText: '日', monthText: '月份', yearText: '年份', //面板中年月日文字
+        endYear:2050 //结束年份
+    }; */
+
+    //日历插件
+    $('#taskStart,#taskStop').mobiscroll(opt);
+
+    //下拉条件筛选
+    $('#letter_search .down_menu_ico').on('click',function(){
+        $('#drop, #mask').toggle();
+    })
+    //收起筛选
+    $('#submit, #mask').on('click',function(){
+        $('#drop, #mask').hide();
+    })
+
+</script>
+</body>
+</html>

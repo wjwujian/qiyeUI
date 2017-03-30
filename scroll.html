@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <ul class="ui_card_list">
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user2.jpeg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">带图片的列表</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user.jpg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">in周年行记：应该用心和这个世界谈谈了谈谈了</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user2.jpeg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">带图片的列表</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user.jpg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">in周年行记：应该用心和这个世界谈谈了谈谈了</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user2.jpeg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">带图片的列表</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user.jpg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">in周年行记：应该用心和这个世界谈谈了谈谈了</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user2.jpeg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">带图片的列表</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexbox">
+                        <figure><img src="images/user.jpg" class="w80X60"></figure>
+                        <section class="flexItem pl10">
+                            <h2 class="ellipsis_line2">in周年行记：应该用心和这个世界谈谈了谈谈了</h2>
+                            <div class="pt5">
+                                <time class="f12" style="color:#a7bac8">2016/04/05</time>
+                            </div>
+                        </section>
+                    </a>
+                </li>
+            </ul>
+             <p class="lastComment">已没有更多</p>
+             <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<!--mock模拟数据-->
+<script src="js/mock.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (){
+        var wrap = $('#main');
+        var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+        var nScrollTop = 0;   //滚动到的当前位置
+        var num = 0;
+        var nDivHight = wrap.height();
+        wrap.scroll(function(){
+          nScrollHight = $(this)[0].scrollHeight;
+          nScrollTop = $(this)[0].scrollTop;
+          if(nScrollTop + nDivHight >= nScrollHight){
+                num++;
+                console.log("滚动条到底部了"+num);
+                loadData(); //加载数据
+            }
+          });
+    });
+
+    // 使用 Mock生成随机数据
+    var data = Mock.mock('/path/to/file',{
+        'result|10':[{
+            'title' : "@cparagraph()",
+            'img':"@image('80X60')",
+            'time':'@date("yyyy/MM/dd")',
+        }]
+    });
+
+    function loadData(){
+        $('.lastComment').text('正在加载...');
+        $.ajax({
+            url: '/path/to/file',
+            type: 'GET',
+            dataType: 'json',
+        })
+        .done(function(data) {
+            var str = '',
+                len = data.result.length;
+            for (var i = 0; i < len; i++) {
+                str += '<li>'
+                str +=        '<a href="#" class="flexbox">'
+                str +=            '<figure><img src="'+data.result[i].img+'" class="w80X60"></figure>'
+                str +=            '<section class="flexItem pl10">'
+                str +=                '<h2 class="ellipsis_line2">'+data.result[i].title+'</h2>'
+                str +=                '<div class="pt5">'
+                str +=                    '<time class="f12" style="color:#a7bac8">'+data.result[i].time+'</time>'
+                str +=                '</div>'
+                str +=            '</section>'
+                str +=        '</a>'
+                str +=    '</li>';
+            };
+            $('.ui_card_list').append(str);
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    }
+</script>
+</body>
+</html>

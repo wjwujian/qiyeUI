@@ -1,0 +1,54 @@
+ <!DOCTYPE HTML>
+<html>
+   <head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+    <style type="text/css">
+        .canvas_iframe {
+            display: block;
+            width: 100%;
+            max-width: 640px;max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #b3b3b3;
+        }
+        .well_box {margin-top: 10px;margin-bottom: 10px;padding: 10px;color: #666}
+        #visible_pop_up {max-width: 640px;max-height: 400px;}
+    </style>
+</head>
+   <body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <p class="well_box">(采用iframe引入签名。来自阿米巴培训签名需求，阿米巴是弹窗签名，而且是多人，所以应用在本示例中，signature.js的代码有些可以删减)</p>
+            <div id="visible_pop_up">
+                <iframe src="sign_canvas.html" scrolling="no" class="canvas_iframe" name="canvas_iframe"></iframe>
+            </div>
+
+            <div class="well_box"><a href="javascript:alert(base64Sign());" class="btn ui_orange_btn">查看图片</a></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+   <!--签名的js-->
+   <script type="text/javascript" src="js/signature.js"></script>
+   <script>
+
+        //取得签名图片
+       function base64Sign(){
+          return  document.getElementById('creat_img').src
+       }
+  </script>
+ </body>
+</html>

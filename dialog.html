@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body style="overflow: hidden">
+    <div id="wrap_main" class="wrap" data-role="parent-page">
+        <div id="main" class="wrap_inner">
+            <div class="nav_tab_wrap">
+                <nav class="ui_nav_tab flexbox">
+                    <a href="javascript:;" class="flexItem on">alert</a>
+                    <a href="javascript:;" class="flexItem">confirm</a>
+                    <a href="javascript:;" class="flexItem">带输入框</a>
+                </nav>
+            </div>
+
+            <br>
+            <div class="p10">
+                <button type="button" class="btn ui_orange_btn" onclick="viewModal(true,'各种列表','#aside')">底部弹出层</button>
+            </div>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+    <!--底部弹出层-->
+    <div class="ui_aside_page modal_out" id="aside">
+        <header class="abs_top">
+            <div class="ui_header">
+                <h2 class="js-title"></h2>
+                <a href="javascript:viewModal(false,'','#aside');" class="ui_close_dialog"></a>
+            </div>
+        </header>
+        <div class="ui_aside_page_inner">
+            <iframe id="iframe" src="list.html" frameborder="no" width="100%" height="100%"></iframe>   
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript" src="js/loading.js"></script>
+<!--本项目的js-->
+<script type="text/javascript" src="js/my.js"></script>
+<script type="text/javascript">
+    //点击tab
+     $('.ui_nav_tab').on('click','a',function(){
+       tabUI('on','#tab_content',this);
+       if($(this).index() == 0){
+            _alert('','我是自定义alert！','确定');
+       }else if($(this).index() == 1){
+            _alert('','我是自定义confirm！',{
+                fail:function(){
+                    alert('你点击了取消按钮！');
+                },
+                ok:function(){
+                    alert('你点击了确定按钮！');
+                },
+            });
+       }else if($(this).index() == 2){
+            _alert('','<input type="text" placeholder="请输入" class="ui_ipt">','确定');
+       }
+    })
+
+    showLoading();
+    setTimeout(hideLoading,1000)
+
+</script>
+</body>
+</html>

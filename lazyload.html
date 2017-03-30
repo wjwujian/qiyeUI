@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业号UI组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/ku.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/qui.css" />
+</head>
+<body>
+    <div id="wrap_main" class="wrap">
+        <div id="main" class="wrap_inner">
+            <section>
+                <h2 class="letter_bar">图片懒加载</h2>
+                <div class="js-content">
+                   <ul class="ui_card_list" id="ui_list">
+                        
+                   </ul>
+                </div>
+            </section>
+            <div class="footer_height"></div>
+        </div>
+        <footer class="abs_bottom body_bg p10">
+            <a href="javascript:history.go(-1);" class="btn">返回</a>
+        </footer>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+ <!--图片懒加载-->
+<script type="text/javascript" src="js/lazy-load-img.js"></script>
+<!--mock模拟数据-->
+<script src="js/mock.js"></script>
+<script src="js/my.js"></script>
+<script type="text/javascript">
+    // 使用 Mock生成随机数据
+    var data = Mock.mock('/path/to/file',{
+        'result|10':[{
+            'url':"@url",
+            'title' : "@ctitle(3, 5)",
+            'content':'@cword(50, 150)',
+            'image':"@image('160X120','#1B7578')",
+            'datetime':"@datetime('yyyy/MM/dd')"
+        }]
+    });
+
+    function loadData(el){
+        $('.lastComment').text('正在加载...');
+        $.ajax({
+            url: '/path/to/file',
+            type: 'GET',
+            dataType: 'json',
+        })
+        .done(function(data) {
+            var str = '',
+                len = data.result.length;
+            for (var i = 0; i < len; i++) {
+                 str += '<li>'
+                    +        '<a class="flexbox" href="'+data.result[i].url+'">'
+                    +            '<figure><img class="w80X60" src="images/icon/right.png" data-src="'+data.result[i].image+'"></figure>'
+                    +            '<section class="flexItem pl10">'
+                    +                '<h2 class="ellipsis_line2">'+data.result[i].content+'</h2>'
+                    +                '<div class="pt5">'
+                    +                    '<time class="f12" style="color:#a7bac8">'+data.result[i].datetime+'</time>'
+                    +                '</div>'
+                    +            '</section>'
+                    +        '</a>'
+                    +    '</li>';
+            };
+            $(el).append(str);
+           
+            var lazyLoadImg = new LazyLoadImg({
+                el: document.querySelector('#ui_list'),
+                mode: 'diy', //默认模式，将显示原图，diy模式，将自定义剪切，默认剪切居中部分
+                time: 300, // 设置一个检测时间间隔
+                complete: true, //页面内所有数据图片加载完成后，是否自己销毁程序，true默认销毁，false不销毁
+                position: { // 只要其中一个位置符合条件，都会触发加载机制
+                    top: 0, // 元素距离顶部
+                    right: 0, // 元素距离右边
+                    bottom: 0, // 元素距离下面
+                    left: 0 // 元素距离左边
+                },
+                diy: { //设置图片剪切规则，diy模式时才有效果
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center'
+                },
+                before: function () { // 图片加载之前执行方法
+
+                },
+                success: function (el) { // 图片加载成功执行方法
+                    el.classList.add('success')
+                },
+                error: function (el) { // 图片加载失败执行方法
+                    el.src = './images/error.png'
+                }
+            })
+
+            // lazyLoadImg.start() // 重新开启懒加载程序
+            // lazyLoadImg.destroy() // 销毁图片懒加载程序
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    }
+    loadData('#ui_list');
+    //滚动加载
+    scrollLoadData('#main',function(){
+       loadData('#ui_list');
+    });
+
+</script>
+</body>
+</html>
