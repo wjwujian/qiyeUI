@@ -124,6 +124,7 @@ Date.prototype.Format = function(fmt)
   return fmt;   
 }
 
+
 /**
     *手势侧滑操作
     *@param elm 滑动的元素
@@ -133,7 +134,7 @@ Date.prototype.Format = function(fmt)
     *@method touchend 滑动结束
     *@method update 恢复滑动前的样子
 */
-function Slider(elm,item){
+function TouchEvent(elm,item){
   this.touch;
   this.startX;
   this.startY;
@@ -164,26 +165,26 @@ function Slider(elm,item){
       this.li[i].addEventListener(_this.move,_this.touchmove,false);
       this.li[i].addEventListener(_this.up,_this.touchend,false);
   };
-  $(_this.li).css({
-      'transition':'all .2s',
-      'webkitTransition':'all .2s',
-  })
 }
 
-Slider.prototype.touchstart = function(e){
+TouchEvent.prototype.touchstart = function(e){
   _this.flag = true;
+  var tagName = e.target.tagName;
   (_this.isTouch) ? touchEvent = e.touches[0] :  touchEvent = e || window.e; //事件源
   _this.touch = touchEvent;
   _this.startX = _this.touch.pageX;
   _this.startY = _this.touch.pageY;
-  $(_this.li).siblings().css({
-    'transform':'translateX(0)',
-    'webkitTransform':'translateX(0)',
-  });
+  if (tagName == "IMG" || tagName == "P") {
+      return
+  }else{
+    _this.update();
+  };
 }
 
-Slider.prototype.touchmove = function(e){
+TouchEvent.prototype.touchmove = function(e){
+  console.log('move');
   (_this.isTouch) ? touchEvent = e.touches[0] :  touchEvent = e || window.e; //事件源
+  var $this = $(this);
   var m = function(){
         _this.touch = touchEvent;
         _this.moveX = _this.touch.pageX;
@@ -191,10 +192,10 @@ Slider.prototype.touchmove = function(e){
         _this.touchX = _this.moveX - _this.startX;
       if (Math.abs(_this.moveX - _this.startX) > Math.abs(_this.moveY - _this.startY)){
           e.preventDefault();
-          $(this).css({
-            'transform':'translateX('+_this.touchX+'px)',
-            'webkitTransform':'translateX('+_this.touchX+'px)'
-            });
+          $this.css({
+            'transform':'translate3d('+_this.touchX+'px,0,0)',
+            'webkitTransform':'translate3d('+_this.touchX+'px,0,0)'
+          });
       }else {
         return;
       }
@@ -206,26 +207,39 @@ Slider.prototype.touchmove = function(e){
   }
 }
 
-Slider.prototype.touchend = function(e){
+TouchEvent.prototype.touchend = function(e){
+  console.log('end');
   _this.flag = false;
   _this.x = Math.abs(_this.moveX - _this.startX);
+  var $this = $(this);
   if (_this.x > 30 && (_this.moveX - _this.startX) < 0){
-    $(this).css({
-        'transform':'translateX(-'+$(_this.item).width()+'px)',
-        'webkitTransform':'translateX(-'+$(_this.item).width()+'px)'
+    $this.css({
+        'transform':'translate3d(-'+$(_this.item).width()+'px,0,0)',
+        'webkitTransform':'translate3d(-'+$(_this.item).width()+'px,0,0)'
     });
-  }else if((_this.moveX - _this.startX) > 10){
-    $(this).css({
-        'transform':'translateX(0)',
-        'webkitTransform':'translateX(0)'
+  }else{
+    $this.css({
+        'transform':'translate3d(0,0,0)',
+        'webkitTransform':'translate3d(0,0,0)'
     });
   }
+
+  $(_this.li).css({
+      'transition':'all .2s cubic-bezier(.08,.87,.08,.87)',
+      'webkitTransition':'all .2s cubic-bezier(.08,.87,.08,.87)',
+  })
+  setTimeout(function(){
+    $(_this.li).css({
+        'transition':'all 0s cubic-bezier(.08,.87,.08,.87)',
+        'webkitTransition':'all 0s cubic-bezier(.08,.87,.08,.87)',
+    })
+  },200)
 }
-Slider.prototype.update = function(){
+TouchEvent.prototype.update = function(){
   console.log('update');
   $(_this.li).css({
-      'transform':'translateX(0)',
-      'webkitTransform':'translateX(0)'
+      'transform':'translate3d(0,0,0)',
+      'webkitTransform':'translate3d(0,0,0)'
   });
 }
 

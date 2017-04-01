@@ -86,10 +86,38 @@ div.loading div span:nth-child(12) {-webkit-transform:rotate(330deg) translate(0
 
 /*==================微信弹出框==================*/
 .weui_mask { position: fixed; z-index: 1300; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0, 0, 0, 0.6); }
-.weui_dialog { position: fixed; z-index: 1301; width: 85%; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background-color: #FAFAFC; text-align: center; border-radius: 3px; font-size: 16px; line-height:}
+.weui_dialog { position: relative; z-index: 1301; width: 85%;/* top: 50%; 
+    left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); */
+    background-color: #FAFAFC; text-align: center; border-radius: 3px; font-size: 16px;opacity: 0;
+    -webkit-transform: scale(1.185);
+  transform: scale(1.185);
+    -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.custom_dialog {position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1500;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+     -webkit-box-align: center; 
+    box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
 .weui_dialog_confirm .weui_dialog .weui_dialog_hd { padding: 1.2em 20px .5em; }
 .weui_dialog_confirm .weui_dialog .weui_dialog_bd { text-align: left; }
-.weui_dialog_hd { padding: 1.2em 0 .5em; }
+.weui_dialog_hd { padding: 1.2em 0 .5em;}
 .weui_dialog_title { font-weight: 400; font-size: 17px; }
 .weui_dialog_bd { padding: 0 20px; font-size: 15px; color: #888; }
 .weui_dialog_ft { position: relative; line-height: 42px; margin-top: 20px; font-size: 17px; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
@@ -102,6 +130,18 @@ div.loading div span:nth-child(12) {-webkit-transform:rotate(330deg) translate(0
 .weui_btn_dialog.default { color: #353535; }
 .weui_btn_dialog.primary { color: #0BB20C; }
 @media screen and (min-width: 1024px) {.weui_dialog { width: 35%;}}
+
+.pop_in {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.pop_out {
+  -webkit-transform: scale(0.815);
+  transform: scale(0.815);
+  opacity: 0;
+}
 
 
 /*==================企微选人，@人样式==================*/
@@ -524,4 +564,26 @@ input {
 }
 .user_select_icon.active i {
     color: #32cd32;
+}
+
+/*========== 其他 ==========*/
+.lastComment {
+    color: #999999;
+    text-align: center;
+    line-height: 36px;
+}
+
+h1.new_title1 {
+    font-size: 20px;
+    color: #333;
+}
+.small_tite {
+    position: relative;
+    padding: 10px 0 5px 0;
+    color: #999;
+}
+.fixed {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
 }

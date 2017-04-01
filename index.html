@@ -26,7 +26,7 @@
         <i class="icon-exchange"></i>
     </article>
     <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-    <!--企微的js-->
+    
     <script type="text/javascript" src="js/dialog.js"></script>
     <script type="text/javascript" src="js/loading.js"></script>
     <script type="text/javascript">
@@ -53,14 +53,16 @@
                     hideLoading();
                 }
             })
-
-            if (typeof(localStorage) && localStorage.num) {
-                localStorage.num = Number(localStorage.num)+1;
-            }else{
-                localStorage.num = 0;
-                _alert('2016-12-23更新公告','1、增加了签名功能<br>2、滑动删除桌面端也能操作<br>3、宫格布局css优化<br>4、关于企业号UI组件页面增加大图预览');
-            };
         })
+
+        var notice = {
+            "tt":"2017-04-01更新公告",
+            "con":"1、企微样式和js部分抽离。<br>2、touch滑动删除优化。<br>3、弹窗js修改"
+        }
+        if (localStorage.time0401 === undefined) {
+            _alert(notice.tt,notice.con);
+            localStorage.time0401 = "record"
+        }
     </script>
 </body>
 </html>

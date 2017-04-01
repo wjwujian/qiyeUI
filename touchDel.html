@@ -101,10 +101,10 @@
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <!--本项目的js-->
 <script type="text/javascript" src="js/my.js"></script>
-<!--企微的js-->
+
 <script type="text/javascript" src="js/dialog.js"></script>
 <script type="text/javascript">
-    var slide =  new Slider('#ui_card_list li','.ui_touch_item');
+    var slide =  new TouchEvent('#ui_card_list li','.ui_touch_item');
     $('#ui_card_list li').on('click','.ui_touch_item',function(){
         var $btn = $(this);
         _alert('','确认删除？',{

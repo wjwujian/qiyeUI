@@ -59,11 +59,6 @@ var createClass = function () {
 }();
 
 
-
-
-
-
-
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];

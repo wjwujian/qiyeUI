@@ -57,7 +57,7 @@
 ],
 "menu2":[
 	{
-		"icon":"fa fa-fw fa-lg fa-wrench","href":"//www.diybloghome.com/frontlogy/1036.html","text":"性能优化"
+		"icon":"fa fa-fw fa-lg fa-wrench","href":"//isux.tencent.com/h5-performance.html","text":"性能优化"
 	},
 	{
 		"icon":"fa fa-fw fa-lg fa-random","href":"match.html","text":"正则匹配"

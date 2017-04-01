@@ -1,4 +1,3 @@
-
 /**确认框弹出层 
      * 示例
     //_alert('自定义标题','内容内容');
@@ -42,6 +41,24 @@ function _alert(title,text,buttonText,callback){
            +' </div>'
        +' </div>';
     $('body').append(html);
+   
+    //移除dialog
+    var removeDialog = function(){
+        setTimeout(function(){
+            $('.custom_dialog').remove();
+        },200)
+    }
+    //class状态切换
+    var _toggleClass = function(active){
+        if (active == "in") {
+            setTimeout(function(){
+                $('.weui_dialog').addClass('pop_in')
+            },60)
+         }else if(active == "out"){
+            $('.weui_dialog').removeClass('pop_in').addClass('pop_out');
+        };
+    }
+    _toggleClass("in");
     $('.weui_btn_dialog.primary').off('click').on('click',function(){//确认
       $('.weui_btn_dialog.primary').off('click');
         if(callback&&typeof(callback)=='function'){
@@ -49,13 +66,15 @@ function _alert(title,text,buttonText,callback){
         }else if(callback&&typeof(callback)=='object'&&callback['ok']){
             callback['ok']();
         }
-        $(this).parents('.custom_dialog').remove();
+        _toggleClass("out");
+        removeDialog();
     });
     $('.weui_btn_dialog.default').off('click').on('click',function(){//取消
         if(callback&&typeof(callback)=='object'&&callback['fail']){
             callback['fail']();
         }
-        $(this).parents('.custom_dialog').remove();
+        _toggleClass("out");
+        removeDialog();
     });    
 }; 
 

@@ -16,9 +16,6 @@
 .ui_b_l_tt {border-left: 3px solid limegreen;padding-left: 5px}
 
 /*搜索*/
-.search-box {
-    background: #c2c1c7;
-}
 .inner-search-box {
     padding: 10px;
 }
@@ -196,6 +193,63 @@ i.ipt_search_ico {width: 17px;height: 17px}
     border: 4px solid;
     border-color: limegreen limegreen transparent transparent;
 }
+.ui_triangle_up,
+.ui_triangle_down,
+.ui_arrow_up,
+.ui_arrow_down,
+.ui_arrow_left,
+.ui_arrow_right {position: relative;}
+i.ui_triangle_up,
+i.ui_triangle_down,
+i.ui_arrow_up,
+i.ui_arrow_down,
+i.ui_arrow_left,
+i.ui_arrow_right {display: inline-block;vertical-align: middle;}
+.ui_triangle_up:after,
+.ui_triangle_down:after {
+    position: absolute;
+    right:0;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 8px solid;
+}
+.ui_triangle_up:after  {
+    top: -4px;
+    border-color: transparent transparent #bfbfbf transparent;
+}
+.ui_triangle_down:after {
+    top: 4px;
+    border-color: #bfbfbf transparent transparent transparent;
+}
+.ui_arrow_up:after,
+.ui_arrow_down:after,
+.ui_arrow_left:after,
+.ui_arrow_right:after {position: absolute;
+    right: 0;
+    content: '';
+    width: 10px;
+    height:10px;
+    border: 1px solid;
+    border-color: transparent #999 #999 transparent;
+}
+.ui_arrow_up:after {top:8px;
+    transform: rotate(225deg);
+    -webki-transform: rotate(225deg);
+}
+.ui_arrow_down:after {top:-2px;
+    transform: rotate(45deg);
+    -webki-transform: rotate(45deg);
+}
+.ui_arrow_left:after {top:2px;right: -2px;
+    transform: rotate(135deg);
+    -webki-transform: rotate(135deg);
+} 
+.ui_arrow_right:after {top:2px;right: 2px;
+    transform: rotate(-45deg);
+    -webki-transform: rotate(-45deg);
+} 
+
 
 /*列表*/
 .ui_list>li{padding: 10px;border-bottom: 1px solid #dedede;background-color: #fff}

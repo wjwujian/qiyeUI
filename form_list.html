@@ -154,16 +154,12 @@
     })
 
     //楼层效果
-    // $(window).scroll(function(){
-    //     console.log(_this.scrollTop);
-    //     statesTab('.fix_tab li','.title');
-    // })
     document.querySelector('#main').onscroll = function(){
         console.log(this.scrollTop);
-        statesTab(this,'#tab_tt li','.js-floor');
+        floorTab(this,'#tab_tt li','.js-floor');
     }
 
-    function statesTab(_this,tab,title){
+    function floorTab(_this,tab,title){
             var li = document.querySelectorAll(tab);
             var title = document.querySelectorAll(title);
         for (var i = 0; i < title.length; i++) {
