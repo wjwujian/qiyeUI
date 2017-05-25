@@ -161,29 +161,38 @@ function TouchEvent(elm,item){
   }
 
   for (var i = 0; i < _this.li.length; i++) {
-      this.li[i].addEventListener(_this.down,_this.touchstart,false);
-      this.li[i].addEventListener(_this.move,_this.touchmove,false);
-      this.li[i].addEventListener(_this.up,_this.touchend,false);
+      _this.li[i].addEventListener(_this.down,_this.touchstart,false);
+      _this.li[i].addEventListener(_this.move,_this.touchmove,false);
+      _this.li[i].addEventListener(_this.up,_this.touchend,false);
   };
 }
 
 TouchEvent.prototype.touchstart = function(e){
   _this.flag = true;
-  var tagName = e.target.tagName;
-  (_this.isTouch) ? touchEvent = e.touches[0] :  touchEvent = e || window.e; //事件源
+  var tagName = e.currentTarget.tagName,
+      $this = $(this);
+  (_this.isTouch) ? touchEvent = e.changedTouches[0] :  touchEvent = e || window.e; //事件源
   _this.touch = touchEvent;
   _this.startX = _this.touch.pageX;
   _this.startY = _this.touch.pageY;
-  if (tagName == "IMG" || tagName == "P") {
+  // $this.addClass('active').siblings().removeClass('active');
+  // for (var i = 0; i < _this.li.length; i++) {
+  //   if (_this.li[i].className != 'active') {
+  //     _this.update();
+  //   }
+  // };
+  // console.log("tagName:"+tagName);
+  if (tagName == "LI") {
       return
   }else{
     _this.update();
   };
+
 }
 
 TouchEvent.prototype.touchmove = function(e){
   console.log('move');
-  (_this.isTouch) ? touchEvent = e.touches[0] :  touchEvent = e || window.e; //事件源
+  (_this.isTouch) ? touchEvent = e.changedTouches[0] :  touchEvent = e || window.e; //事件源
   var $this = $(this);
   var m = function(){
         _this.touch = touchEvent;
@@ -211,8 +220,9 @@ TouchEvent.prototype.touchend = function(e){
   console.log('end');
   _this.flag = false;
   _this.x = Math.abs(_this.moveX - _this.startX);
+  console.log("_this.startX:"+_this.startX+"\n_this.moveX:"+_this.moveX);
   var $this = $(this);
-  if (_this.x > 30 && (_this.moveX - _this.startX) < 0){
+  if (_this.x > 30 && _this.moveX < _this.startX){
     $this.css({
         'transform':'translate3d(-'+$(_this.item).width()+'px,0,0)',
         'webkitTransform':'translate3d(-'+$(_this.item).width()+'px,0,0)'
@@ -224,12 +234,12 @@ TouchEvent.prototype.touchend = function(e){
     });
   }
 
-  $(_this.li).css({
+  $this.css({
       'transition':'all .2s cubic-bezier(.08,.87,.08,.87)',
       'webkitTransition':'all .2s cubic-bezier(.08,.87,.08,.87)',
   })
   setTimeout(function(){
-    $(_this.li).css({
+    $this.css({
         'transition':'all 0s cubic-bezier(.08,.87,.08,.87)',
         'webkitTransition':'all 0s cubic-bezier(.08,.87,.08,.87)',
     })
@@ -262,7 +272,7 @@ function textareaAutoHeight(textarea,num){
            'width':$textarea[0].scrollWidth,
        });
        var h=$('#clone_textarea'+num)[0].scrollHeight;
-           h=h>70?70:(h>30?h+2:30);
+           h=h>70?70:(h>30 ? h+2 : 30);
            $this.height(h);
    }) 
 }
@@ -279,7 +289,7 @@ function textareaAutoHeight(textarea,num){
   //打开的时候
   viewModal(true,'这里是弹窗标题','#modal',{
     open:function(){
-      console.log('打来了弹窗');
+      console.log('打开了弹窗');
     }
   });
   //关闭的时候

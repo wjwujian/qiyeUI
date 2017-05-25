@@ -263,6 +263,7 @@ i.ui_arrow_right {display: inline-block;vertical-align: middle;}
     background-origin: content-box;
     background-size: 8px;
 }
+.ui_card_list {overflow: hidden;}
 .ui_card_list>li {position: relative;padding: 10px;
     margin-bottom: 5px;
     border-top: 1px solid #dedede;
