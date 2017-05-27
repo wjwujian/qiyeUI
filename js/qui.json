@@ -48,6 +48,9 @@
 		"icon":"fa fa-fw fa-lg fa-spinner","href":"scroll.html","text":"滚动加载"
 	},
 	{
+		"icon":"fa fa-fw fa-lg fa-spinner","href":"iscroll.html","text":"iscroll下拉刷新上拉加载"
+	},
+	{
 		"icon":"fa fa-fw fa-lg fa-leaf","href":"sign.html","text":"签名功能"
 	},
 	{
