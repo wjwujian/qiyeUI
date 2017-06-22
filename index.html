@@ -23,7 +23,6 @@
         </ul>
         <ul class="ui_list_in ui_list_arrow" id="ui_list2">
         </ul>
-        <i class="icon-exchange"></i>
     </article>
     <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
     
@@ -40,6 +39,7 @@
                     showLoading();
                 },
                 success:function(json){
+                    console.log("success");
                     var str = '',
                         footerStr = '';
                     $.each(json.menu,function(index,info){
@@ -51,6 +51,10 @@
                     $('#ui_list1').html(str);
                     $('#ui_list2').html(footerStr);
                     hideLoading();
+                },
+                error:function() {
+                    console.log("error");
+                    /* Act on the event */
                 }
             })
         })

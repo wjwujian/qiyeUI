@@ -5,7 +5,7 @@ var updateObj = {
 if (localStorage.time20170622 === undefined) {
     _alert(updateObj.title,updateObj.content);
     localStorage.time20170622 = updateObj.title
-}
+};
 
 /*设备检测*/
 // 判断屏幕是否旋转
