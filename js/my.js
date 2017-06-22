@@ -2,10 +2,10 @@ var updateObj = {
     title:"2017-06-22更新公告",
     content:"1、Ku.min.css增加大图预览的样式。<br>2、移动端1像素边框"
 }
-if (localStorage.time20170622 === undefined) {
+// if (localStorage.time20170622 === undefined) {
     _alert(updateObj.title,updateObj.content);
-    localStorage.time20170622 = updateObj.title
-};
+    // localStorage.time20170622 = updateObj.title
+// };
 
 /*设备检测*/
 // 判断屏幕是否旋转

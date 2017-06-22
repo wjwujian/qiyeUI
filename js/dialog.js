@@ -13,7 +13,7 @@ function _alert(title,text,buttonText,callback){
         var buttonHtml='<div class="weui_dialog_ft">'
               +'<a href="javascript:;" class="weui_btn_dialog primary">'+buttonText1+'</a>'
               +'</div>';
-        var boxClass="weui_dialog_alert custom_dialog";
+        var boxClass="weui_dialog_alert custom_dialog animation_dialog";
     }else {
         if(typeof(buttonText)=='string'&&buttonText.split("|").length>=2){
             var buttonText1=buttonText.split("|")[0];
@@ -30,11 +30,11 @@ function _alert(title,text,buttonText,callback){
             +'<a href="javascript:;" class="weui_btn_dialog default">'+buttonText1+'</a>'
             +'<a href="javascript:;" class="weui_btn_dialog primary">'+buttonText2+'</a>'
             +'</div>';
-        var boxClass="weui_dialog_confirm custom_dialog";
+        var boxClass="weui_dialog_confirm custom_dialog animation_dialog";
     }
     var html='<div class="'+boxClass+'">'
             +'<div class="weui_mask"></div>'
-            +'<div class="weui_dialog">'
+            +'<div class="weui_dialog animation_dialog">'
                 +'<div class="weui_dialog_hd"><strong class="weui_dialog_title">'+title+'</strong></div>'
                 +'<div class="weui_dialog_bd">'+text+'</div>'
                 +buttonHtml
