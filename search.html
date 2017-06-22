@@ -140,33 +140,7 @@
         $('.searchTitleIcon').removeClass('faSortUp').addClass('faSortDown');
     })
 
-    //点击搜索
-    function SearchControl(el,ipt,close_ico){
-        this.el = el;
-        this.ipt = ipt; 
-        this.close_ico = close_ico;
-        //显示搜索
-        this._showSearch = function(){
-            $(el).hide();
-        };
-        //显示删除按钮
-        this._showClose = function(){
-            if($(_this.ipt)[0].value.length){
-                $(_this.close_ico).show(); 
-            }else{
-                $(_this.close_ico).hide(); 
-            }
-        };
-        //清除输入值
-        this._clearValue = function(){
-            $(_this.ipt)[0].value = '';
-            $(_this.close_ico).hide();
-        };
-        _this = this;
-        $(_this.el).on('click',_this._showSearch);
-        $(_this.ipt).on('input',_this._showClose);
-        $(_this.close_ico).on('click',_this._clearValue);
-    }
+
     new SearchControl('.search_label','#ipt_search','.ipt_item .close_ico');
 
     var d = new Date();

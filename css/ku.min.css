@@ -1,5 +1,5 @@
 /**
-    * 抽取企微的loading、弹窗、选人、搜索框、图片上传样式
+    * 抽取企微的loading，弹窗，选人，搜索框，图片上传样式，图片预览
     * author 黄小海
     * date 2017-03-29
 */
@@ -129,7 +129,7 @@ div.loading div span:nth-child(12) {-webkit-transform:rotate(330deg) translate(0
 .weui_dialog_confirm .weui_dialog_ft a:first-child:after { display: none; }
 .weui_btn_dialog.default { color: #353535; }
 .weui_btn_dialog.primary { color: #0BB20C; }
-@media screen and (min-width: 1024px) {.weui_dialog { width: 35%;}}
+@media screen and (min-width: 1024px) {.weui_dialog { max-width: 480px;}}
 
 .pop_in {
   -webkit-transform: scale(1);
@@ -586,4 +586,46 @@ h1.new_title1 {
     position: absolute;
     width: 100%;
     z-index: 10;
+}
+
+/*========== 图片预览 ==========*/
+.overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 500%;
+    left: 0;
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    z-index: 1100;
+}
+.img_preview {
+    position: absolute;
+    z-index: 1201;
+    top: 0;
+    width: 100%;
+}
+.inner_img_preview {
+    position: relative;
+    z-index: 99;
+}
+.inner_img_preview img{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);max-height:100%;max-width:100%;}
+.img_preview_top {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+.img_preview_left {
+    text-align: left;
+}
+.img_preview_right {
+    text-align: right;
+}
+.img_preview_left  .back_btn {
+    background: #393a41;
+    padding: 0 20px;
+    width: auto;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 35px;
 }

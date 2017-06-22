@@ -6,6 +6,9 @@
 		"icon":"fa fa-fw fa-lg fa-hand-pointer-o fa-rotate-180","href":"button.html","text":"按钮"
 	},
 	{
+		"icon":"fa fa-fw fa-lg fa-magic","href":"1px.html","text":"1像素边框"
+	},
+	{
 		"icon":"fa fa-fw fa-lg fa-check-square","href":"radio&checkbox.html","text":"单选复选"
 	},
 	{
@@ -48,14 +51,14 @@
 		"icon":"fa fa-fw fa-lg fa-spinner","href":"scroll.html","text":"滚动加载"
 	},
 	{
-		"icon":"fa fa-fw fa-lg fa-spinner","href":"iscroll.html","text":"iscroll下拉刷新上拉加载"
+		"icon":"fa fa-fw fa-lg fa-arrows-v","href":"iscroll.html","text":"iscroll下拉刷新上拉加载"
 	},
 	{
 		"icon":"fa fa-fw fa-lg fa-leaf","href":"sign.html","text":"签名功能"
 	},
 	{
 		"icon":"fa fa-fw fa-lg fa-hourglass-half","href":"lazyload.html","text":"图片懒加载"
-	}
+	},
 
 ],
 "menu2":[

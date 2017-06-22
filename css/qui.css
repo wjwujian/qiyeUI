@@ -156,6 +156,9 @@ i.ipt_search_ico {width: 17px;height: 17px}
 .ui_red_btn {background-color: #E51C23}
 .ui_btn_group {padding-left: 10px;padding-top: 10px;padding-bottom: 10px}
 .ui_btn_group>li {padding-right: 10px}
+.plain_btn {
+    color: limegreen;background:#fff;
+}
 
 /*颜色*/
 .c_orange {color: #FF8D00}
@@ -701,3 +704,18 @@ i.ui_star_on {display: inline-block;width: 15px;height: 16px;}
     from { -webkit-transform:rotate(0deg) translateZ(0); }
     to { -webkit-transform:rotate(360deg) translateZ(0); }
 }
+
+/*1像素边框*/
+[class *="_px"] {position: relative;}
+._px:before,
+._pxUp:before,
+._pxRight:before,
+._pxBottom:before,
+._pxleft:before {border: 1px solid #ccc;content: '';
+    position: absolute;left:0;top:0;width: 200%;height: 200%;
+    transform:scale(.5,.5);-webkit-transform:scale(.5,.5);transform-origin: left top;-webkit-transform-origin: left top
+}
+._pxUp:before {border-right:none;border-bottom: none;border-left:none;}
+._pxRight:before {border-top:none;border-bottom: none;border-left:none;}
+._pxBottom:before {border-right:none;border-top: none;border-left:none;}
+._pxleft:before {border-right:none;border-bottom: none;border-top:none;}

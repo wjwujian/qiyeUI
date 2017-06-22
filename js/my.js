@@ -1,3 +1,12 @@
+var updateObj = {
+    title:"2017-06-22更新公告",
+    content:"1、Ku.min.css增加大图预览的样式。<br>2、移动端1像素边框"
+}
+if (localStorage.time20170622 === undefined) {
+    _alert(updateObj.title,updateObj.content);
+    localStorage.time20170622 = updateObj.title
+}
+
 /*设备检测*/
 // 判断屏幕是否旋转
 function orientationChange() {
@@ -35,21 +44,6 @@ function systemUA(){
 function isIframe(){
     return top.location != self.location
 }
-// if (systemUA() == 'pc' && !isIframe()) {
-//   // alert('pc');
-//   $('body').wrapInner('<div id="body-page"></div>')
-//   $('#body-page').css({
-//     width:'320px',
-//     height:'504px',
-//     border:'10px solid rgb(51,51,51)',
-//     borderRadius:'10px',
-//     marginLeft:'20px'
-//   })
-//   $('#body-page .wrap_inner').css({
-//     overflowY:'auto'
-//   })
-//   $('#body-page').before('<div style="width:360px;text-align:center;padding-top:10px;padding-bottom:10px;font-size:18px;color:limegreen">仿iphone 5s尺寸预览</h2>');
-// };
 
 /**
 	* JS链接跳转
@@ -175,13 +169,6 @@ TouchEvent.prototype.touchstart = function(e){
   _this.touch = touchEvent;
   _this.startX = _this.touch.pageX;
   _this.startY = _this.touch.pageY;
-  // $this.addClass('active').siblings().removeClass('active');
-  // for (var i = 0; i < _this.li.length; i++) {
-  //   if (_this.li[i].className != 'active') {
-  //     _this.update();
-  //   }
-  // };
-  // console.log("tagName:"+tagName);
   if (tagName == "LI") {
       return
   }else{
@@ -355,4 +342,38 @@ function scrollLoadData(wrap,callback){
         +'\n'+'nScrollHight滚动条的高度是'+nScrollHight);
     }
   });
+}
+
+/**
+  *搜索交互
+  @param el 开始点击的元素
+  @param ipt 搜索输入框
+  @param close_ico 清空输入框的小图标
+*/
+function SearchControl(el,ipt,close_ico){
+    var _this = this;
+    _this.el = el;
+    _this.ipt = ipt; 
+    _this.close_ico = close_ico;
+    //显示搜索
+    _this._showSearch = function(){
+        $(el).hide();
+    };
+    //显示删除按钮
+    _this._showClose = function(){
+        if($(_this.ipt)[0].value.length){
+            $(_this.close_ico).show(); 
+        }else{
+            $(_this.close_ico).hide(); 
+        }
+    };
+    //清除输入值
+    _this._clearValue = function(){
+        $(_this.ipt)[0].value = '';
+        $(_this.close_ico).hide();
+    };
+    
+    $(_this.el).on('click',_this._showSearch);
+    $(_this.ipt).on('input',_this._showClose);
+    $(_this.close_ico).on('click',_this._clearValue);
 }

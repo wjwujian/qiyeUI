@@ -15,4 +15,16 @@
 .weui_dialog_confirm .weui_dialog_ft a:first-child:after { display: none; }
 .weui_btn_dialog.default { color: #353535; }
 .weui_btn_dialog.primary { color: #0BB20C; }
-@media screen and (min-width: 1024px) {.weui_dialog { width: 35%;}}
+@media screen and (min-width: 1024px) {.weui_dialog { max-width:480px;}}
+
+.pop_in {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.pop_out {
+  -webkit-transform: scale(0.815);
+  transform: scale(0.815);
+  opacity: 0;
+}
