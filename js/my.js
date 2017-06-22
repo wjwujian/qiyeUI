@@ -337,9 +337,9 @@ function scrollLoadData(wrap,callback){
           callback();
       } 
     }else{
-      console.log('nDivHight滚动元素的高度是:'+nDivHight
-        +'\n'+'nScrollTop滚动的距离是'+nScrollTop
-        +'\n'+'nScrollHight滚动条的高度是'+nScrollHight);
+      // console.log('nDivHight滚动元素的高度是:'+nDivHight
+      //   +'\n'+'nScrollTop滚动的距离是'+nScrollTop
+      //   +'\n'+'nScrollHight滚动条的高度是'+nScrollHight);
     }
   });
 }
